@@ -31,7 +31,7 @@ The Heating Oven Alert System addresses these challenges by integrating a range 
 
 Maintaining a consistent and safe temperature within industrial ovens is crucial for ensuring product quality and safety. When temperatures exceed a specific threshold, immediate action is required to prevent potential damage or hazards. Traditional monitoring systems often rely on manual intervention and lack real-time alerts or remote-control capabilities. Additionally, power interruptions can lead to communication failures, complicating the diagnosis of such issues without effective logging. The current system fails to provide real-time monitoring and alerts for temperature deviations, lacks remote control functionality for emergency situations, does not log power interruptions for troubleshooting, and offers no user-friendly interface for managing the system remotely. These limitations jeopardize product quality, safety, and operational efficiency, highlighting the need for an integrated system that offers real-time monitoring, remote control, and comprehensive logging to address these critical challenges.
 
-![Oven Image](link_to_oven_image)
+![Oven Image](./public/img/oven.jpg)
 
 ## Design Overview 🏗️
 
@@ -112,8 +112,8 @@ The final implementation of the Heating Oven Alert System includes the following
 - The system has been tested for accuracy in temperature monitoring, reliability in alert notifications, and effectiveness in remote control and logging.
 - All components are functioning as expected, providing a robust solution for monitoring and controlling the heating oven with real-time alerts and remote access capabilities.
 
-![Web Interface Image 1](link_to_image_1)
-![Web Interface Image 2](link_to_image_2)
+![Web Interface Image 1](./public/img/web_analytics.jpg)
+![Web Interface Image 2](./public/img/web_interrupt.jpg)
 
 ## Conclusion 🏁
 
