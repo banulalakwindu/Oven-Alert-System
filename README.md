@@ -1,66 +1,120 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Oven-Alert-System 🌡️⚡
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Welcome to the **Oven-Alert-System** project! This is a web-based real-time temperature and power failure alert system for industrial test ovens, developed by [Salitha](https://github.com/salithaisuranga) and **Adheesha**. 
 
-## About Laravel
+## Introduction 📚
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+In industrial and laboratory settings, maintaining precise temperature control in heating ovens is essential for ensuring product quality, safety, and operational efficiency. Overheating can lead to significant damage, safety hazards, and compromised product integrity, making it crucial to monitor temperature levels continuously. Traditional temperature monitoring systems often rely on manual checks and do not provide timely alerts or remote-control capabilities, which can be particularly problematic during off-hours or in critical situations.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The Heating Oven Alert System addresses these challenges by integrating a range of modern technologies to create a comprehensive monitoring and control solution. This system utilizes an ESP32 microcontroller, a real-time clock (RTC) module, a GSM module, a DHT11 sensor, relay modules, and a rechargeable battery with a charging module. The core functionality of the system includes real-time temperature monitoring, alert notifications via SMS and phone calls, and remote-control capabilities through a web interface.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Objectives 🎯
 
-## Learning Laravel
+- 📲 Send an alert message and call if the temperature exceeds 35°C.
+- ⚠️ Accurately identify communication errors caused by power interruption.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Apparatus 🛠️
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- ESP32 microcontroller
+- LM35 Temperature Sensor
+- GSM Module
+- RTC Module (DS 3231)
+- Relay Module (One channel)
+- Charging module
+- Rechargeable battery (9V)
+- Connecting Wires
+- Breadboard
+- 12V power supply
+- 2 LEDs
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Problem Statement ❓
 
-## Laravel Sponsors
+Maintaining a consistent and safe temperature within industrial ovens is crucial for ensuring product quality and safety. When temperatures exceed a specific threshold, immediate action is required to prevent potential damage or hazards. Traditional monitoring systems often rely on manual intervention and lack real-time alerts or remote-control capabilities. Additionally, power interruptions can lead to communication failures, complicating the diagnosis of such issues without effective logging. The current system fails to provide real-time monitoring and alerts for temperature deviations, lacks remote control functionality for emergency situations, does not log power interruptions for troubleshooting, and offers no user-friendly interface for managing the system remotely. These limitations jeopardize product quality, safety, and operational efficiency, highlighting the need for an integrated system that offers real-time monitoring, remote control, and comprehensive logging to address these critical challenges.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+![Oven Image](link_to_oven_image)
 
-### Premium Partners
+## Design Overview 🏗️
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+The Heating Oven Alert System is engineered to monitor and control oven temperatures in real-time while providing robust alert and logging capabilities. The design incorporates various components and technologies to achieve its objectives:
 
-## Contributing
+### Components and Functionality 🔧
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **ESP32 Microcontroller**: Acts as the central control unit, managing data from sensors, handling communication with the GSM module, and interfacing with the web server.
+- **RTC Module**: Keeps track of real-time data and logs timestamps of power interruptions.
+- **GSM Module**: Sends alert messages (SMS) and makes calls to notify the user when the temperature exceeds the set threshold.
+- **DHT11 Sensor**: Measures temperature and humidity inside the oven.
+- **Relay Modules**: Controls the power supply to the heating element based on temperature readings.
+- **Rechargeable Battery with Charging Module**: Provides backup power to ensure continuous operation during power outages.
 
-## Code of Conduct
+### Web Interface 🌐
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Developed using the Laravel framework, the web interface allows users to view real-time temperature data, access power interruption logs, and control the heating element remotely.
+- Ngrok is used to securely expose the ESP32 data to the internet, enabling remote access to the web interface.
 
-## Security Vulnerabilities
+### Functionality Overview ⚙️
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **Temperature Monitoring**: Continuously checks the temperature against the set threshold (35°C).
+- **Alert System**: Sends SMS and makes phone calls when the temperature exceeds the threshold.
+- **Remote Control**: Allows users to cut off or power on the heater through the web interface.
+- **Logging and Analysis**: Logs power interruptions and displays them on the web interface for analysis and troubleshooting.
 
-## License
+## Actual Implementation Plan 📝
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. **Component Selection and Integration**:
+    - **ESP32 Microcontroller**: Programmed to handle sensor data, communicate with the GSM module, and interact with the web server.
+    - **RTC Module**: Connected to the ESP32 via I2C for accurate timekeeping and logging.
+    - **GSM Module**: Configured to send SMS and make calls, integrated with the ESP32 for alert functionality.
+    - **DHT11 Sensor**: Wired to the ESP32 for temperature and humidity readings.
+    - **Relay Modules**: Controlled by the ESP32 to manage the heating element.
+    - **Rechargeable Battery**: Integrated with a charging module to ensure backup power.
+
+2. **Software Development**:
+    - **Firmware Development**: Coded the ESP32 firmware to handle sensor readings, alerting, and logging. Implemented routines for temperature monitoring, alert generation, and power interruption logging.
+    - **Web Interface Development**: Built the web interface using the Laravel framework. Defined routes for temperature analytics, power interruption logs, and heater control. Implemented real-time data visualization using JavaScript and Chart.js.
+    - **Ngrok Integration**: Configured ngrok to securely expose the ESP32 data to the internet and facilitate remote access to the web interface.
+
+3. **Testing and Debugging**:
+    - Conducted tests to verify the accuracy of temperature readings, the functionality of alert notifications, and the reliability of remote-control features.
+    - Debugged issues related to sensor data accuracy, GSM communication, and web interface responsiveness.
+
+4. **Deployment**:
+    - Assembled the hardware components on a PCB and integrated them into the final enclosure.
+    - Deployed the web interface to a live server and ensured that all components were properly connected and operational.
+
+## Final Implementation 🚀
+
+The final implementation of the Heating Oven Alert System includes the following key features and components:
+
+### Hardware Setup 🖥️
+
+- **ESP32 Microcontroller**: Mounted on a PCB and connected to the RTC module, GSM module, DHT11 sensor, and relay modules.
+- **RTC Module**: Properly interfaced with the ESP32 for accurate timekeeping and logging.
+- **GSM Module**: Configured for sending SMS alerts and making phone calls.
+- **DHT11 Sensor**: Placed in the oven to monitor temperature and humidity.
+- **Relay Modules**: Connected to the heating element for on/off control.
+- **Rechargeable Battery**: Integrated with a charging module to provide backup power during interruptions.
+
+### Web Interface 🌐
+
+- **Real-Time Temperature Plot**: Displays live temperature data using Chart.js.
+- **Remote Heater Control**: Provides buttons for emergency cutoff and power-on operations.
+- **Power Interruption Log**: Shows logged power interruption times for analysis.
+- **Secure Access**: Utilizes ngrok for secure online access to the web interface.
+
+### System Operation ⚙️
+
+- The system continuously monitors the temperature of the oven. When the temperature exceeds 35°C, the ESP32 triggers the GSM module to send an SMS and make a phone call.
+- Users can log into the web interface from anywhere to view real-time temperature data, control the heater, and review power interruption logs.
+- The RTC module logs power interruptions, which are displayed on the web interface for further analysis and comparison with communication failure logs from the oven system.
+
+### Performance Evaluation 📊
+
+- The system has been tested for accuracy in temperature monitoring, reliability in alert notifications, and effectiveness in remote control and logging.
+- All components are functioning as expected, providing a robust solution for monitoring and controlling the heating oven with real-time alerts and remote access capabilities.
+
+![Web Interface Image 1](link_to_image_1)
+![Web Interface Image 2](link_to_image_2)
+
+## Conclusion 🏁
+
+The Heating Oven Alert System has effectively addressed key challenges in industrial temperature management by integrating advanced technologies for real-time monitoring, alerting, and remote control. Through the use of an ESP32 microcontroller, GSM module, DHT11 sensor, RTC module, and a user-friendly web interface developed with Laravel, the system ensures prompt detection of temperature anomalies, immediate notifications via SMS and phone calls, and remote heater control from any location. The inclusion of ngrok for secure online access and comprehensive logging capabilities further enhances the system's functionality, allowing for accurate tracking of power interruptions and effective diagnosis of communication failures. Overall, the successful implementation of this system represents a significant improvement over traditional methods, providing enhanced safety, convenience, and efficiency in managing heating ovens.
